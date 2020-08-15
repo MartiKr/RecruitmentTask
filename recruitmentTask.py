@@ -6,10 +6,10 @@ from selenium.webdriver.support.wait import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.common.by import By
 
-company = "firma"
+company = "Company"
 email = "email@email.com"
 full_name = "Imię nazwisko"
-country_phone_code = "(+227) Niger"
+country_phone_code = "(+30) Grecja"
 tel = 123456789
 password = "abcdefgh"
 
@@ -61,7 +61,6 @@ try:
     element = WebDriverWait(wd, 5).until(EC.presence_of_element_located((By.XPATH, "/html/body/div[6]")))
     success = wd.find_element_by_xpath("/html/body/div[6]/div").text
 
-    print(success)
     #chceck if success mesage is correct
     assert success == success_mesage
 
