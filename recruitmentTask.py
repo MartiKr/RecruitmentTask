@@ -22,17 +22,18 @@ url = r"https://dev-1.clicktrans.pl/register-test/courier"
 wd = webdriver.Chrome(executable_path=path_d)
 wd.get(url)
 
+def find_element(id, value):
+    element = wd.find_element_by_id(id)
+    element.send_keys(value)
+
 #fill company name textbox
-company_name = wd.find_element_by_id("user_register_company_name")
-company_name.send_keys(company)
+find_element("user_register_company_name", company)
 
 #fill email textbox
-email_form = wd.find_element_by_id("user_register_email")
-email_form.send_keys(email)
+find_element("user_register_email", email)
 
 #fill the first and the last name textbox
-full_name_form = wd.find_element_by_id("user_register_name")
-full_name_form.send_keys(full_name)
+find_element("user_register_name", full_name)
 
 #select correct country phone code textbox
 phone_code = wd.find_element_by_id("user_register_phoneCode")
@@ -40,17 +41,18 @@ drp_phone_code = Select(phone_code)
 drp_phone_code.select_by_visible_text(country_phone_code)
 
 #fill the phone number textbox
-tel_form = wd.find_element_by_id("user_register_phone")
-tel_form.send_keys(tel)
+find_element("user_register_phone", tel)
 
 #fill the password textbox
-password_form = wd.find_element_by_id("user_register_plainPassword")
-password_form.send_keys(password)
+find_element("user_register_plainPassword", password)
 
 #select all check boxes
-reg_chb = wd.find_element_by_id("user_register_settings_agreementRegulations").click()
-agr1_chb = wd.find_element_by_id("user_register_settings_agreementPersonalData").click()
-agr2_chb = wd.find_element_by_id("user_register_settings_agreementMarketing").click()
+def click_checkbox(id):
+    wd.find_element_by_id(id).click()
+
+click_checkbox("user_register_settings_agreementRegulations")
+click_checkbox("user_register_settings_agreementPersonalData")
+click_checkbox("user_register_settings_agreementMarketing")
 
 #click "Zarejestruj"
 reg = wd.find_element_by_id("user_register_submit").click()
